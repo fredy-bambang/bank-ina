@@ -25,6 +25,7 @@ type DatabaseConfig struct {
 type OAuthConfig struct {
 	ClientID     string
 	ClientSecret string
+	Domain       string
 }
 
 var config *Config
@@ -47,8 +48,9 @@ func LoadConfig() {
 			FilePath: getEnv("DB_FILE_PATH", "test.db"),
 		},
 		Oauth: OAuthConfig{
-			ClientID:     getEnv("OAUTH_CLIENT_ID", ""),
-			ClientSecret: getEnv("OAUTH_CLIENT_SECRET", ""),
+			ClientID:     getEnv("OAUTH_CLIENT_ID", "000000"),
+			ClientSecret: getEnv("OAUTH_CLIENT_SECRET", "999999"),
+			Domain:       getEnv("DOMAIN", "http://localhost"),
 		},
 	}
 }

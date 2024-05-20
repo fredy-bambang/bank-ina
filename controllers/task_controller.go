@@ -34,7 +34,11 @@ func (tc *TaskController) CreateTask(c *gin.Context) {
 
 // FindAllTasks is a function to find all tasks
 func (tc *TaskController) FindAllTasks(c *gin.Context) {
-	tasks, _ := tc.taskService.FindAllTasks()
+	tasks, err := tc.taskService.FindAllTasks()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 	c.JSON(http.StatusOK, tasks)
 }
 
